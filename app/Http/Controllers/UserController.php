@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = user::All();
+        $users = User::All();
 
         return view('user.index', compact('users'));
     }
@@ -77,28 +77,23 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
-    {
-        User::where('id', $id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => $request->role,
-        ]);
-        
-        if ($request->has('password')) {
-            User::where('id', $id)->update([
-                'password' => bcrypt($request->password),
-            ]);
-        }
-            
-        User::where('id',$id)->update([
+    public function update(Request $request, $id)
+{
+    $updateData = [
         'name' => $request->name,
         'email' => $request->email,
-        'role' => $request->role, 
-        ]);
+        'role' => $request->role,
+    ];
 
-        return redirect()->route('user.index')->with('success', 'Berhasil mengubah data pengguna !!!');
+    if ($request->has('password')) {
+        $updateData['password'] = bcrypt($request->password);
     }
+
+    User::where('id', $id)->update($updateData);
+
+    return redirect()->route('user.index')->with('success', 'Berhasil mengubah data pengguna !!!');
+}
+
 
     /**
      * Remove the specified resource from storage.

@@ -28,7 +28,7 @@
         <h1 class="text-2xl font-bold sm:text-3xl">Selamat Datang!</h1>
   
         <p class="mt-4 text-gray-500">
-          "Website ini adalah platform rekapitulasi keterlambatan siswa SMK Wikrama Bogor."
+          "Ini Website adalah platform rekapitulasi keterlambatan siswa SMK Wikrama Bogor."
         </p>
       </div>
   
